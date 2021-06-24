@@ -5,7 +5,7 @@
 # en esta seccion puedes añadir los atajos a programas o acciones de tu sistema
 #
 # ejemplo:
-# para crear unu atajo a firefox-esr
+# para crear un atajo a firefox-esr
 #
 # super + F3 		(atajo de teclado a utilizar, donde "+" indica que deben pulsarse al mismo tiempo)
 #	firefox-esr	(nombre del programa a ejecutar)
