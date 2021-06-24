@@ -1,0 +1,126 @@
+#=comentarios traducidos
+###=comentarios por traducir
+
+# atajos de teclado independientes del gestor de ventanas
+# en esta seccion puedes añadir los atajos a programas o acciones de tu sistema
+#
+# ejemplo:
+# para crear unu atajo a firefox-esr
+#
+# super + F3 		(atajo de teclado a utilizar, donde "+" indica que deben pulsarse al mismo tiempo)
+#	firefox-esr	(nombre del programa a ejecutar)
+#
+
+# emulador de terminal (cambia "xterm" por el emulador de terminal de tu sistema")
+super + F1
+	xterm
+
+# volver a cargar este archivo de configuracion (debes hacerlo luego de cada modificacion a este archivo!)
+super + Escape
+	pkill -USR1 -x sxhkd
+
+#
+# atajos de teclado de bspwm
+#
+
+# cierra/reinicia bspwm (por defecto "q" para cerra y "r" para reiniciar)
+super + alt + {q,r}
+	bspc {quit,wm -r}
+
+# cierra y termina un proceso
+super + {_,shift + }w
+	bspc node -{c,k}
+
+# alternar entre los modos casilla y ventana-unica 
+super + m
+	bspc desktop -l next
+
+### send the newest marked node to the newest preselected node
+super + y
+	bspc node newest.marked.local -n newest.!automatic.local
+
+### swap the current node and the biggest window
+super + g
+	bspc node -s biggest.window
+
+#
+# estado/flags
+#
+
+# establecer el modo de la ventana actual (baldosas, pseudo baldosas, flotante y pantalla completa)
+super + {t,shift + t,s,f}
+	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+# set the node flags
+super + ctrl + {m,x,y,z}
+	bspc node -g {marked,locked,sticky,private}
+
+#
+# enfocar/cambiar
+#
+
+# enfocar el nodo en la direccion indicada
+super + {_,shift + }{h,j,k,l}
+	bspc node -{f,s} {west,south,north,east}
+
+### enfocar el nodo para el salto de ruta indicado (focus node for the given path jump)
+super + {p,b,comma,period}
+	bspc node -f @{parent,brother,first,second}
+
+# enfocar la siguiente/anterior ventana, en el escritorio actual
+super + {_,shift + }c
+	bspc node -f {next,prev}.local.!hidden.window
+
+# enfocar el siguiente/anterior escritorio en el monitor actual
+super + bracket{left,right}
+	bspc desktop -f {prev,next}.local
+
+# enfoca el ultimo nodo/escritorio
+super + {grave,Tab}
+	bspc {node,desktop} -f last
+
+# enfoca el mas antiguo o nuevo nodo en el historial
+super + {o,i}
+	bspc wm -h off; \
+	bspc node {older,newer} -f; \
+	bspc wm -h on
+
+# enfocar o enviar, al escritorio indicado
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
+
+#
+# preseleccion  
+#
+
+# preseleccionar una direccion (selecciona el lugar en el cual se mostrara la nueva ventana)
+super + ctrl + {h,j,k,l}
+	bspc node -p {west,south,north,east}
+
+# preseleccionar radio indicado (luego de preseleccionar una direccion puedes indicar el tamaño de la nueva ventana a crear)
+super + ctrl + {1-9}
+	bspc node -o 0.{1-9}
+
+# cancelar preseleccion
+super + ctrl + space
+	bspc node -p cancel
+
+# cancelar preseleccion en el escritorio enfocado
+super + ctrl + shift + space
+	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
+#
+# mover/cambiar tamaño
+#
+
+# expandir una ventana moviendo uno de sus lados hacia afuera
+super + alt + {h,j,k,l}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+# contraer una ventana moviendo uno de sus lados hacia adentro
+super + alt + shift + {h,j,k,l}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+# mover una ventana flotante
+super + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
