@@ -31,15 +31,15 @@ super + alt + {q,r}
 super + {_,shift + }w
 	bspc node -{c,k}
 
-# alternar entre los modos casilla y ventana-unica 
+# alternar entre los modos baldosa(tile) y ventana-unica 
 super + m
 	bspc desktop -l next
 
-### send the newest marked node to the newest preselected node
+# enviar el nodo con el indicador marked al area preseleccionada de otro nodo (debes colocar el indicador "marked" para que pueda funcionar este comando) 
 super + y
 	bspc node newest.marked.local -n newest.!automatic.local
 
-#intercambiar el lugar de la ventana actual y la ventana de mayor tamaño
+# intercambiar el lugar de la ventana actual y la ventana de mayor tamaño
 super + g
 	bspc node -s biggest.window
 
@@ -47,11 +47,11 @@ super + g
 # estado/flags
 #
 
-# establecer el modo de la ventana actual (baldosas, pseudo baldosas, flotante y pantalla completa)
+# establecer el modo de la ventana actual (baldosas(tile), pseudo baldosas, flotante y pantalla completa)
 super + {t,shift + t,s,f}
 	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
-# set the node flags
+# establecer el indicador de nodo
 super + ctrl + {m,x,y,z}
 	bspc node -g {marked,locked,sticky,private}
 
@@ -63,7 +63,7 @@ super + ctrl + {m,x,y,z}
 super + {_,shift + }{h,j,k,l}
 	bspc node -{f,s} {west,south,north,east}
 
-### enfocar el nodo para el salto de ruta indicado (focus node for the given path jump)
+### focus node for the given path jump
 super + {p,b,comma,period}
 	bspc node -f @{parent,brother,first,second}
 
