@@ -23,7 +23,7 @@ super + Escape
 # atajos de teclado de bspwm
 #
 
-# cierra/reinicia bspwm (por defecto "q" para cerra y "r" para reiniciar)
+# cierra/reinicia bspwm (por defecto "q" para cerra y "r" para reiniciar, util cuanso modificas ~/.config/bspwm/bspwmrc)
 super + alt + {q,r}
 	bspc {quit,wm -r}
 
