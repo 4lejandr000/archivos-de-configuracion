@@ -35,7 +35,7 @@ super + {_,shift + }w
 super + m
 	bspc desktop -l next
 
-# enviar el nodo con el indicador marked al area preseleccionada de otro nodo (debes colocar el indicador "marked" para que pueda funcionar este comando) 
+# enviar el nodo con el indicador marked al area preseleccionada de otro nodo (debes colocar el indicador "marked" en el nodo que deseas mover, para que pueda funcionar este comando) 
 super + y
 	bspc node newest.marked.local -n newest.!automatic.local
 
